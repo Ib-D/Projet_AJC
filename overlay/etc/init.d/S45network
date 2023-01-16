@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Start the network....
+#
+
+# Debian ifupdown needs the /run/network lock directory
+
+loadkmap < /etc/azerty.kmap
+
+# touch /tmp/key.txt
+
+echo "clavier français" > /tmp/key.txt
+
