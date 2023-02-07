@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	//string str = string(obj["parameters"]["dataset"].asString());
 	//str = "\'" + str + "\'";
  
- 	int x = 3000;
+ 	int x = 10000;
 		
 		string str1[x],str2[x],str3[x],str4[x],str5[x],str6[x],str7[x],str8[x],str9[x];
 	for (int i=0; i<x; i++)
