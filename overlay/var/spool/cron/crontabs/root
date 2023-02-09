@@ -1,4 +1,0 @@
-#* * * * * /var/spool/cron/crontabs/compteur.sh >> /tmp/compteur.txt
-#* * * * * /bin/date >> /tmp/compteur.txt
-* * * * * /var/spool/cron/crontabs/compteur3.sh
-#* * * * * /var/spool/cron/crontabs/dossierTest/test.sh >> /tmp/test.txt
