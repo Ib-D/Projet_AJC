@@ -57,6 +57,7 @@ int main(void) {
     int somme = 0;
     int moyenne;
     int nbPoint=6300; // nombre de lignes à traiter 
+   // int coeff = 0.5;  // coefficient à multiplier pour améliorer l'affichage de l'histogramme
 
     /*
      * comptage du nombre de fois que le trafic est fluide
@@ -70,6 +71,7 @@ int main(void) {
         }
      }
       cout <<"NbFluide = "<<comptFluide<<endl;
+      comptFluide = round(comptFluide/2);
 
     /*
      * comptage du nombre de fois que le trafic est inconnu
@@ -83,6 +85,7 @@ int main(void) {
         }
      }
       cout <<"NbInconnu = "<<comptInconnu<<endl;
+      comptInconnu = round(comptInconnu/2);
 
     /*
      * comptage du nombre de fois que le trafic est pré-saturé
@@ -96,6 +99,7 @@ int main(void) {
         }
      }
       cout <<"NbPresaturé = "<<comptPresat<<endl;
+      comptPresat = round(comptPresat/2);
 
     /*
      * comptage du nombre de fois que le trafic est saturé
@@ -109,7 +113,7 @@ int main(void) {
         }
      }
       cout <<"NbSaturé = "<<comptSatur<<endl;
-
+      comptSatur = round(comptSatur/2);
       
       /*
        * création de l'image
@@ -126,9 +130,9 @@ int main(void) {
   
   /* création des couleurs */
   blanc = gdImageColorAllocate(image, 255, 255, 255);
-  bleu = gdImageColorAllocate(image, 0, 0, 88);
+  bleu = gdImageColorAllocate(image, 153, 204, 255);
   noir = gdImageColorAllocate(image, 0, 0, 0);
-  marron = gdImageColorAllocate(image, 80, 25, 25);
+  marron = gdImageColorAllocate(image, 204, 102, 0);
   rouge = gdImageColorAllocate(image, 153, 0, 0);
   vert = gdImageColorAllocate(image, 0, 102, 51);
 
@@ -230,24 +234,25 @@ int main(void) {
             pSstr [i] = pS2[i];
         }
 
+    
      /**
      * @brief réalisation des rectangles de l'histogramme et affichages des textes
      */     
-    gdImageFilledRectangle(image, 200, hFluide, 250, 800, marron);
-    gdImageFilledRectangle(image, 400, hInconnu, 450, 800, rouge);
-    gdImageFilledRectangle(image, 600, hPresat, 650, 800, vert);
-    gdImageFilledRectangle(image, 800, hSat, 850, 800, bleu);
+    gdImageFilledRectangle(image, 200, hFluide, 280, 800, rouge);
+    gdImageFilledRectangle(image, 400, hInconnu, 480, 800, marron);
+    gdImageFilledRectangle(image, 600, hPresat, 680, 800, vert);
+    gdImageFilledRectangle(image, 800, hSat, 880, 800, bleu);
 
-    gdImageString(image, mesPolices[4], 300, 70, tt, noir);
+    gdImageString(image, mesPolices[4], 300, 70, tt, noir);  // le titre
     gdImageString(image, mesPolices[4], 100, 820, fluide, noir);
     gdImageString(image, mesPolices[4], 300, 820, inconnu, noir);
     gdImageString(image, mesPolices[4], 500, 820, prest, noir);
     gdImageString(image, mesPolices[4], 700, 820, sature, noir);
 
-    gdImageString(image, mesPolices[4], 130, 700, pFstr, noir);
-    gdImageString(image, mesPolices[4], 330, 700, pIstr, noir);
-    gdImageString(image, mesPolices[4], 530, 700, pPstr, noir);
-    gdImageString(image, mesPolices[4], 730, 700, pSstr, noir);
+    gdImageString(image, mesPolices[4], 210, 700, pFstr, noir);
+    gdImageString(image, mesPolices[4], 410, 700, pIstr, noir);
+    gdImageString(image, mesPolices[4], 610, 700, pPstr, noir);
+    gdImageString(image, mesPolices[4], 810, 700, pSstr, noir);
        
   /* Ouvrir le fichier image en écriture. */
   image_png = fopen("../root/HistogrmJournee.png", "w");

@@ -60,7 +60,7 @@ int main(void) {
     int moyenne;
     int nbPoint=6300; // nombre de lignes à traiter 
     
-    int coeff = 90;  // coefficient à multiplier pour améliorer l'affichage de l'histogramme
+    int coeff = 60;  // coefficient à multiplier pour améliorer l'affichage de l'histogramme
 
     /*
      * comptage du nombre de fois que le trafic est fluide sur Av_Victor_Hugo
@@ -133,14 +133,17 @@ int main(void) {
   int rouge, blanc, noir, bleu, marron, vert; 
   /* On créée un image de 1500 par 1000 */
   image = gdImageCreate(1500, 1000);
-  
+   
+
   /* création des couleurs */
   blanc = gdImageColorAllocate(image, 255, 255, 255);
-  bleu = gdImageColorAllocate(image, 0, 0, 88);
+  bleu = gdImageColorAllocate(image, 153, 204, 255);
   noir = gdImageColorAllocate(image, 0, 0, 0);
-  marron = gdImageColorAllocate(image, 80, 25, 25);
+  marron = gdImageColorAllocate(image, 204, 102, 0);
   rouge = gdImageColorAllocate(image, 153, 0, 0);
   vert = gdImageColorAllocate(image, 0, 102, 51);
+  
+  
 
    /* polices utilisées */
     mesPolices[0] = gdFontTiny;
@@ -159,12 +162,6 @@ int main(void) {
       int hFluideAK =800 - round(comptFluideAK*600/3000);
       int hFluideR =800 - round(comptFluideR*600/3000);
 
-      blanc = gdImageColorAllocate(image, 255, 255, 255);
-      bleu = gdImageColorAllocate(image, 0, 0, 88);
-      noir = gdImageColorAllocate(image, 0, 0, 0);
-      marron = gdImageColorAllocate(image, 80, 25, 25);
-      rouge = gdImageColorAllocate(image, 153, 0, 0);
-            vert = gdImageColorAllocate(image, 0, 102, 51);
             
        /*
         * réalisation du titre de l'histogramme avec la date mise à jour automatiquement
@@ -185,7 +182,7 @@ int main(void) {
        cout << trafic3<<endl;
              unsigned char tt[trafic3.size()];
        
-              /* récupération de la date complète */
+       /* récupération du titre avec la date complète */
        for (int i=0; i<trafic3.size(); i++)
        {
           tt[i] = trafic3[i];
@@ -252,10 +249,10 @@ int main(void) {
         /**
      * @brief réalisation des rectangles de l'histogramme et affichages des textes
      */
-	gdImageFilledRectangle(image, 200, hFluideVH, 250, 800, rouge);
-	gdImageFilledRectangle(image, 400, hFluideBSM, 450, 800, marron);
-	gdImageFilledRectangle(image, 600, hFluideAK, 650, 800, vert);
-	gdImageFilledRectangle(image, 800, hFluideR, 850, 800, bleu);
+	gdImageFilledRectangle(image, 200, hFluideVH, 280, 800, rouge);
+	gdImageFilledRectangle(image, 400, hFluideBSM, 480, 800, marron);
+	gdImageFilledRectangle(image, 600, hFluideAK, 680, 800, vert);
+	gdImageFilledRectangle(image, 800, hFluideR, 880, 800, bleu);
 	
 	gdImageString(image, mesPolices[4], 300, 70, tt, noir);
 	gdImageString(image, mesPolices[4], 100, 810, fluide, noir);
@@ -263,10 +260,10 @@ int main(void) {
 	gdImageString(image, mesPolices[4], 550, 810, prest, noir);
 	gdImageString(image, mesPolices[4], 780, 810, sature, noir);
 
-	gdImageString(image, mesPolices[4], 130, 700, pFstr, noir);
-	gdImageString(image, mesPolices[4], 330, 700, pIstr, noir);
-	gdImageString(image, mesPolices[4], 530, 700, pPstr, noir);
-	gdImageString(image, mesPolices[4], 730, 700, pSstr, noir);
+	gdImageString(image, mesPolices[4], 210, 700, pFstr, noir);
+	gdImageString(image, mesPolices[4], 410, 700, pIstr, noir);
+	gdImageString(image, mesPolices[4], 610, 700, pPstr, noir);
+	gdImageString(image, mesPolices[4], 810, 700, pSstr, noir);
         
 	/* Ouvrir le fichier image en écriture. */
 	image_png = fopen("../root/HistogrmCompareZone.png", "w");
