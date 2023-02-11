@@ -167,8 +167,8 @@ int main(void) {
         * réalisation du titre de l'histogramme avec la date mise à jour automatiquement
         */ 
        
-       string trafic ="ETUDE COMPARATIVE DE LA FLUIDITE SUR 4 ZONES - JOURNEE DU ";
-       string trafic2="aaaaaaaaaa ";  // variable qui va contenir la date extraite
+       string trafic ="ÉTUDE COMPARATIVE DE LA FLUIDITÉ SUR 4 ZONES - JOURNÉE DU ";
+       string trafic2="          ";  // variable qui va contenir la date extraite
        string trafic3;  // variable qui va contenir le titre complet
         /* extraction de la date*/
        for (int i=0; i<10; i++)
@@ -180,7 +180,7 @@ int main(void) {
        // cout<<trafic2<<endl;
        trafic3 = trafic + trafic2;
        cout << trafic3<<endl;
-             unsigned char tt[trafic3.size()];
+       char tt[trafic3.size()];
        
        /* récupération du titre avec la date complète */
        for (int i=0; i<trafic3.size(); i++)
@@ -193,10 +193,10 @@ int main(void) {
     /*
      * titres des batons de l'histogramme
      */ 
-	unsigned char fluide[] ="AV VICTOR HUGO";
-	unsigned char inconnu[] ="BD ST MICHEL";
-	unsigned char prest[] ="AV KLEBER";
-	unsigned char sature[] ="RIVOLI";
+	char fluide[] ="AV VICTOR HUGO";
+	char inconnu[] ="BD ST MICHEL";
+	char prest[] ="AV KLEBER";
+	char sature[] ="RIVOLI";
 	
       /*
      * calcul des pourcentage des batons de l'histogramme
@@ -231,10 +231,11 @@ int main(void) {
     string pS2 = pSS + " %";
 	
 	/* conversion de string en unsigned char pour pouvoir les mettre sur l'histogramme */  
-	unsigned char pFstr [8];          
-	unsigned char pIstr [8];          
-	unsigned char pPstr [8];          
-	unsigned char pSstr [8];
+	char pFstr [8];          
+	char pIstr [8];          
+	char pPstr [8];          
+	char pSstr [8];
+	
         
         for (int i=0; i<8; i++)
        {
@@ -244,7 +245,8 @@ int main(void) {
 	   pSstr [i] = pS2[i];
        }
         
-              
+         int brect[8];
+        char str[]  = "/home/ajc/Téléchargements/dejavu-sans/DejaVuSans.ttf";        
    
         /**
      * @brief réalisation des rectangles de l'histogramme et affichages des textes
@@ -254,16 +256,22 @@ int main(void) {
 	gdImageFilledRectangle(image, 600, hFluideAK, 680, 800, vert);
 	gdImageFilledRectangle(image, 800, hFluideR, 880, 800, bleu);
 	
-	gdImageString(image, mesPolices[4], 300, 70, tt, noir);
-	gdImageString(image, mesPolices[4], 100, 810, fluide, noir);
-	gdImageString(image, mesPolices[4], 320, 810, inconnu, noir);
-	gdImageString(image, mesPolices[4], 550, 810, prest, noir);
-	gdImageString(image, mesPolices[4], 780, 810, sature, noir);
+    	gdImageStringFT(image, brect, noir, str, 18, 0, 300, 70, tt); // le titre
+    	gdImageStringFT(image, brect, noir, str, 13, 0, 100, 825, fluide); 
+   	gdImageStringFT(image, brect, noir, str, 13, 0, 310, 825, inconnu); 
+    	gdImageStringFT(image, brect, noir, str, 13, 0, 530, 825, prest); 
+    	gdImageStringFT(image, brect, noir, str, 13, 0, 770, 825, sature); 
 
-	gdImageString(image, mesPolices[4], 210, 700, pFstr, noir);
-	gdImageString(image, mesPolices[4], 410, 700, pIstr, noir);
-	gdImageString(image, mesPolices[4], 610, 700, pPstr, noir);
-	gdImageString(image, mesPolices[4], 810, 700, pSstr, noir);
+   	gdImageStringFT(image, brect, noir, str, 12, 0, 210, 700, pFstr); 
+   	gdImageStringFT(image, brect, noir, str, 12, 0, 410, 700, pIstr); 
+   	gdImageStringFT(image, brect, noir, str, 12, 0, 610, 700, pPstr); 
+   	gdImageStringFT(image, brect, noir, str, 12, 0, 810, 700, pSstr);
+	
+	
+
+ 
+	
+	
         
 	/* Ouvrir le fichier image en écriture. */
 	image_png = fopen("../root/HistogrmCompareZone.png", "w");
