@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 	{
 		str1[i] = "\'" + string(obj["records"][i]["fields"]["iu_ac"].asString()) + "\'";
 		str2[i] = "\'" + string(obj["records"][i]["fields"]["libelle"].asString()) + "\'";
-		str3[i] = "\'" + string(obj["records"][i]["fields"]["t_1h"].asString()) + "\'";  // Pb str3[0]
+		str3[i] = "\'" + string(obj["records"][i]["fields"]["t_1h"].asString()) + "\'";  
 		str4[i] = "\'" + string(obj["records"][i]["fields"]["q"].asString()) + "\'";
 		str5[i] = "\'" + string(obj["records"][i]["fields"]["k"].asString()) + "\'";
 		str6[i] = "\'" + string(obj["records"][i]["fields"]["etat_trafic"].asString()) + "\'";
@@ -82,7 +82,7 @@ int main(int argc, char** argv)
      
 	string myquery = "INSERT INTO comptageRoutier (identifiant,libelle,horodatage,debitHoraire,tauxOccupation,etatTrafic,etatArc,libelleAmont,libelleAval) VALUES(" + str1[i] + "," + str2[i] + "," + str3[i] + "," + str4[i] + "," + str5[i] + "," + str6[i] + ","+ str7[i] + "," + str8[i] + ","+ str9[i] + ");";
      
-    cout << myquery <<endl;
+    //cout << myquery <<endl;
     string sql(myquery);
  
     exit = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messaggeError);
